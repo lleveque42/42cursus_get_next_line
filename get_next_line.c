@@ -6,14 +6,14 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/09 17:09:30 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/11 14:50:24 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 # ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
+#define BUFFER_SIZE 2
 #endif
 #include <stdio.h>
 
@@ -34,6 +34,7 @@ char	*str_to_out(char *str)
 		i++;
 	}
 	out[i] = '\0';
+	// printf("out = %s\n", out);
 	return (out);
 }
 
@@ -49,6 +50,7 @@ char	*next_str(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
+	i++;
 	out = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!out)
 		return (NULL);
@@ -60,22 +62,18 @@ char	*next_str(char *str)
 	}
 	out[j] = '\0';
 	free(str);
+	// printf("str = %s\n", out);
 	return (out);
 }
 
-char	*get_next_line(int fd)
+char	*read_line(int fd, char *str)
 {
-	char 		*buff;
-	char 		*out;
-	static char	*str;
-	int			count;
+	int		count;
+	char	*buff;
 
-	if (!fd)
-		return (NULL);
-	if (!str)
-		str = malloc(sizeof(char) * 1);
-	str[0] = '\0';
 	count = 1;
+	if (fd <= 0)
+		return (NULL);
 	while (!(ft_strchr(str, '\n')) && count != 0)
 	{
 		buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
@@ -93,7 +91,29 @@ char	*get_next_line(int fd)
 		}
 		str = ft_strjoin(str, buff);
 	}
+	return (str);
+}
+
+char	*get_next_line(int fd)
+{
+	// printf("--- DEBUT BOUCLE ---\n\n");
+	char 		*out;
+	static char	*str;
+
+	if (!fd)
+		return (NULL);
+	if (!str)
+	{
+		str = malloc(sizeof(char) * 1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+	}
+	// printf("str au debut = %s\n", str);
+	str = read_line(fd, str);
+	// printf("str apres read line = %s\n", str);
 	out = str_to_out(str);
 	str = next_str(str);
+	// printf("next_str = %s\n\n---- FIN BOUCLE --- \n\n", str);
 	return (out);
 }
