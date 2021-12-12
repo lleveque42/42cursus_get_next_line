@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/11 14:50:24 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/11 17:03:42 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*next_str(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	i++;
 	out = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!out)
 		return (NULL);
@@ -61,8 +60,9 @@ char	*next_str(char *str)
 		i++;
 	}
 	out[j] = '\0';
+	printf("next_str = %s\n", out);
 	free(str);
-	// printf("str = %s\n", out);
+	printf("next_str = %s\n", out);
 	return (out);
 }
 
@@ -83,6 +83,7 @@ char	*read_line(int fd, char *str)
 			return (NULL);
 		}
 		count = read(fd, buff, BUFFER_SIZE);
+		buff[count] = '\0';
 		if (count == -1)
 		{
 			free(str);
@@ -96,7 +97,7 @@ char	*read_line(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	// printf("--- DEBUT BOUCLE ---\n\n");
+	printf("--- DEBUT BOUCLE ---\n\n");
 	char 		*out;
 	static char	*str;
 
@@ -109,11 +110,11 @@ char	*get_next_line(int fd)
 			return (NULL);
 		str[0] = '\0';
 	}
-	// printf("str au debut = %s\n", str);
+	printf("str au debut = %s\n", str);
 	str = read_line(fd, str);
-	// printf("str apres read line = %s\n", str);
+	printf("str apres read line = %s\n", str);
 	out = str_to_out(str);
 	str = next_str(str);
-	// printf("next_str = %s\n\n---- FIN BOUCLE --- \n\n", str);
+	printf("next_str = %s\n\n---- FIN BOUCLE --- \n\n", str);
 	return (out);
 }
