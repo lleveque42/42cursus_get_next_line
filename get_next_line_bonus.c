@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/13 16:38:44 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/13 23:20:58 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,14 @@ char	*str_to_out(char *str)
 		i++;
 	}
 	if (str[i] == '\n')
-	{
-		out[i] = '\n';
-		i++;
-	}
+		out[i++] = '\n';
 	out[i] = '\0';
 	return (out);
 }
 
 char	*next_str(char *str)
 {
-	char *out;
+	char	*out;
 	size_t	i;
 	size_t	j;
 
@@ -62,12 +59,10 @@ char	*next_str(char *str)
 	out = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!out)
 		return (NULL);
-	i++;
-	while (str[i] != '\0')
+	while (str[i++] != '\0')
 	{
 		out[j] = str[i];
 		j++;
-		i++;
 	}
 	out[j] = '\0';
 	free(str);
@@ -97,7 +92,7 @@ char	*read_line(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	char 		*out;
+	char		*out;
 	static char	*str[1024];
 
 	if (fd < 0 || BUFFER_SIZE < 1)
