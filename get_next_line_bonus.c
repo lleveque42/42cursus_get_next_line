@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/13 14:27:10 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/13 14:35:47 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 // # ifndef BUFFER_SIZE
 // #define BUFFER_SIZE 5
@@ -103,21 +103,21 @@ char	*read_line(int fd, char *str)
 char	*get_next_line(int fd)
 {
 	char 		*out;
-	static char	*str;
+	static char	*str[1024];
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	if (!str)
+	if (!str[fd])
 	{
-		str = malloc(sizeof(char) * 1);
-		if (!str)
+		str[fd] = malloc(sizeof(char) * 1);
+		if (!str[fd])
 			return (NULL);
-		str[0] = '\0';
+		str[fd][0] = '\0';
 	}
-	str = read_line(fd, str);
-	if (!str)
+	str[fd] = read_line(fd, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	out = str_to_out(str);
-	str = next_str(str);
+	out = str_to_out(str[fd]);
+	str[fd] = next_str(str[fd]);
 	return (out);
 }

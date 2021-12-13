@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 09:57:15 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/13 10:01:33 by lleveque         ###   ########.fr       */
+/*   Created: 2021/12/09 12:11:30 by lleveque          #+#    #+#             */
+/*   Updated: 2021/12/13 14:37:24 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-int main()
-{
-	int	fd;
+# include <stdlib.h>
+# include <unistd.h>
 
-	fd = open("test.txt", O_RDONLY);
-	printf("Ligne 1 : %s\n", get_next_line(fd));
-	printf("Ligne 2 : %s\n", get_next_line(fd));
-	printf("Ligne 3 : %s\n", get_next_line(fd));
-	printf("Ligne 4 : %s\n", get_next_line(fd));
-}
+char	*get_next_line(int fd);
+char	*str_to_out(char *str);
+char	*next_str(char *str);
+char	*read_line(int fd, char *str);
+size_t	ft_strlen(char *s);
+int		ft_strchr(char *s, char c);
+char	*ft_strjoin(char *s1, char *s2);
+
+#endif
