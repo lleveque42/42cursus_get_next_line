@@ -6,16 +6,11 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/13 14:27:10 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:01:44 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// # ifndef BUFFER_SIZE
-// #define BUFFER_SIZE 5
-// #endif
-#include <stdio.h>
 
 char	*str_to_out(char *str)
 {

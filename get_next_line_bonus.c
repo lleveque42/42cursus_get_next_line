@@ -6,22 +6,17 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:11:09 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/13 14:35:47 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:38:44 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-// # ifndef BUFFER_SIZE
-// #define BUFFER_SIZE 5
-// #endif
-#include <stdio.h>
-
 char	*str_to_out(char *str)
 {
 	size_t	i;
 	size_t	len;
-	char 	*out;
+	char	*out;
 
 	i = 0;
 	len = 0;

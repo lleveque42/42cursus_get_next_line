@@ -6,7 +6,7 @@
 /*   By: lleveque <lleveque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:12:40 by lleveque          #+#    #+#             */
-/*   Updated: 2021/12/13 14:36:12 by lleveque         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:01:18 by lleveque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,14 @@ char	*ft_strjoin(char *s1, char *s2)
 		free(s1);
 		return (NULL);
 	}
-	while (s1 && s1[i])
+	while (s1[i])
 	{
 		out[i] = s1[i];
 		i++;
 	}
 	while (s2[j])
-	{
-		out[i + j] = s2[j];
-		j++;
-	}
-	out[i + j] = '\0';
+		out[i++] = s2[j++];
+	out[i] = '\0';
 	free(s1);
 	return (out);
 }
